@@ -1,6 +1,6 @@
 import assert from 'assert';
 import { transform } from 'babel-core';
-import appDecoratorComponent from'./index';
+import appDecoratorComponent from'../src/index';
 import syntaxDecorator from 'babel-plugin-syntax-decorators';
 
 function trim(str) {
