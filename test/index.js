@@ -4,7 +4,7 @@ import appDecoratorComponent from'../src/index';
 import syntaxDecorator from 'babel-plugin-syntax-decorators';
 
 function trim(str) {
-    return str.replace(/^\s+|\s+$/, '');
+    return str.replace(/^\s+|\s+$/gm, '');
 }
 
 describe('@component', () => {
