@@ -49,7 +49,7 @@ let addSuperClass = function(element, t) {
 
 let addStaticGetterProperty = function(type, superClass, t) {
 
-    let x = t.classMethod(
+    let classMethodNode = t.classMethod(
         'get',
         t.identifier(type),
         [],
@@ -60,7 +60,7 @@ let addStaticGetterProperty = function(type, superClass, t) {
         true
     );
 
-    this.body.body.push(x);
+    this.body.body.push(classMethodNode);
 };
 
 /**
