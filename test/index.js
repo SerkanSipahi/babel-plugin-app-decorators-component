@@ -7,6 +7,18 @@ function trim(str) {
     return str.replace(/^\s+|\s+/gm, '');
 }
 
+function transformCode(code){
+
+    let generated = transform(code, {
+        plugins: [
+            appDecoratorComponent,
+            syntaxDecorator,
+        ]
+    });
+
+    return generated;
+}
+
 describe('@component', () => {
 
     it('should add class extends HTMLElement when no options passed', () => {
@@ -20,12 +32,7 @@ describe('@component', () => {
             @component()
             class Foo extends HTMLDivElement {}`;
 
-        let generated = transform(actual, {
-            plugins: [
-                appDecoratorComponent,
-                syntaxDecorator,
-            ]
-        });
+        let generated = transformCode(actual);
 
         assert.equal(trim(generated.code), trim(expected));
 
@@ -49,12 +56,7 @@ describe('@component', () => {
                     return 'img';
             }}`;
 
-        let generated = transform(actual, {
-            plugins: [
-                appDecoratorComponent,
-                syntaxDecorator,
-            ]
-        });
+        let generated = transformCode(actual);
 
         assert.equal(trim(generated.code), trim(expected));
 
@@ -86,12 +88,7 @@ describe('@component', () => {
 
             class Baz {}`;
 
-        let generated = transform(actual, {
-            plugins: [
-                appDecoratorComponent,
-                syntaxDecorator,
-            ]
-        });
+        let generated = transformCode(actual);
 
         assert.equal(trim(generated.code), trim(expected));
 
