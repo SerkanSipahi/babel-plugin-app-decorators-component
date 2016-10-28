@@ -60,6 +60,43 @@ describe('@component', () => {
 
     });
 
+    it('should add "class extends HTML{type}" by mixed classes', () => {
+
+        let actual =`
+            class Foo {}
+
+            @component({
+               extends: 'progress'
+            })
+            class Bar {
+            }
+
+            class Baz {}`;
+
+        let expected =`
+            class Foo {}
+
+            @component({
+               extends: 'progress'
+            })
+            class Bar extends HTMLProgressElement {
+                static get extends() {
+                    return 'progress';
+            }}
+
+            class Baz {}`;
+
+        let generated = transform(actual, {
+            plugins: [
+                appDecoratorComponent,
+                syntaxDecorator,
+            ]
+        });
+
+        assert.equal(trim(generated.code), trim(expected));
+
+    });
+
     it('should resolve and add "class extends HTML{type}" when options passed', () => {
 
         let actual =`
