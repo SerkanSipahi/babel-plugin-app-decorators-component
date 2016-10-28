@@ -69,7 +69,7 @@ function plugin({types: t}) {
         );
 
         node.body.body.push(x);
-    }
+    };
 
     return {
         visitor: {
@@ -77,16 +77,13 @@ function plugin({types: t}) {
 
                 let node = path.node;
 
-                // @component decortors exsists
                 let component = getDecorator(node, 'component');
                 if(!component){
                     return;
                 }
 
-                // get arguments
                 let superClass = getArguments(component).extends;
 
-                // add extends identifier
                 let element = getElementClassByName(superClass, elements);
                 addSuperClass(node, element);
 
@@ -94,9 +91,7 @@ function plugin({types: t}) {
                     return;
                 }
 
-                // add static getter property
                 addStaticGetterProperty(node, 'extends', superClass)
-
             },
         },
     };
