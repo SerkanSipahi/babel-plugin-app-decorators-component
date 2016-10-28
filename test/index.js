@@ -18,8 +18,7 @@ describe('@component', () => {
 
         let expected = `
             @component()
-            class Foo extends HTMLElement  {
-            }`;
+            class Foo extends HTMLDivElement {}`;
 
         let generated = transform(actual, {
             plugins: [
@@ -48,8 +47,7 @@ describe('@component', () => {
             class Foo extends HTMLImageElement {
                 static get extends() {
                     return 'img';
-                }
-            }`;
+            }}`;
 
         let generated = transform(actual, {
             plugins: [
@@ -113,7 +111,7 @@ describe('@component', () => {
                extends: 'form'
             };
             @component(options)
-            class Baz {
+            class Baz extends HTMLFormElement {
                 static get extends() {
                     return 'form';
                 }
