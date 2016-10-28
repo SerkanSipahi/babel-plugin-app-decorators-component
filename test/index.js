@@ -14,14 +14,12 @@ describe('@component', () => {
         let actual =`
             @component()
             class Foo {
-            }
-        `;
+            }`;
 
         let expected = `
             @component()
-            class Foo extends HTMLElement {
-            }
-        `;
+            class Foo extends HTMLElement  {
+            }`;
 
         let generated = transform(actual, {
             plugins: [
@@ -41,16 +39,17 @@ describe('@component', () => {
                extends: 'img'
             })
             class Foo {
-            }
-        `;
+            }`;
 
         let expected =`
             @component({
                extends: 'img'
             })
             class Foo extends HTMLImageElement {
-            }
-        `;
+                static get extends() {
+                    return 'img';
+                }
+            }`;
 
         let generated = transform(actual, {
             plugins: [
@@ -73,8 +72,7 @@ describe('@component', () => {
                extends: 'form'
             })
             class Baz extends Bar {
-            }
-        `;
+            }`;
 
         let expected = `
             class Foo extends HTMLFormElement {}
@@ -84,8 +82,42 @@ describe('@component', () => {
                extends: 'form'
             })
             class Baz extends Bar {
-            }
-        `;
+                static get extends() {
+                    return 'form';
+                }
+            }`;
+
+        let generated = transform(actual, {
+            plugins: [
+                appDecoratorComponent,
+                syntaxDecorator,
+            ]
+        });
+
+        assert.equal(trim(generated.code), trim(expected));
+
+    });
+
+    it('should resolve passed argument', () => {
+
+        let actual =`
+            let options = {
+               extends: 'form'
+            };
+            @component(options)
+            class Baz {
+            }`;
+
+        let expected = `
+            let options = {
+               extends: 'form'
+            };
+            @component(options)
+            class Baz {
+                static get extends() {
+                    return 'form';
+                }
+            }`;
 
         let generated = transform(actual, {
             plugins: [
