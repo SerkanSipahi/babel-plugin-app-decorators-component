@@ -1,6 +1,34 @@
 import { elements } from './elements';
 
 /**
+ * defaultOptions
+ * @type {{
+ *     customElements: boolean,
+ *     independent   : boolean
+ * }}
+ */
+let defaultOptions = {
+
+    /**
+     * possible values: false, "v0", "v1"
+     * customElements {boolean|string}
+     */
+    customElements: false,
+
+    /**
+     * on true : @component (nothing changed)
+     * on false: @component convert to
+     * _component(options){
+     *     ...code...
+     *     depend on customElements = v0, v1
+     *     ...code...
+     * }
+     * independent {boolean}
+     */
+    independent: true,
+};
+
+/**
  * getDecorator
  * @param decoratorName
  * @returns {object|null}
@@ -87,34 +115,6 @@ let addStaticGetterProperty = function(type, superClass, t) {
     );
 
     this.body.body.push(classMethodNode);
-};
-
-/**
- * defaultOptions
- * @type {{
- *     customElements: boolean,
- *     independent   : boolean
- * }}
- */
-let defaultOptions = {
-
-    /**
-     * possible values: false, "v0", "v1"
-     * customElements {boolean|string}
-     */
-    customElements: false,
-
-    /**
-     * on true : @component (nothing changed)
-     * on false: @component convert to
-     * _component(options){
-     *     ...code...
-     *     depend on customElements = v0, v1
-     *     ...code...
-     * }
-     * dependencies {boolean}
-     */
-    independent: true,
 };
 
 /**
