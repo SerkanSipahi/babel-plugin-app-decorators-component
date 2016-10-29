@@ -69,7 +69,7 @@ let addStaticGetterProperty = function(type, superClass, t) {
  * @param t
  * @returns {{visitor: {ClassDeclaration: (function(*=))}}}
  */
-function plugin({types: t}) {
+let plugin = ({types: t}) => {
 
     return {
         visitor: {
@@ -85,7 +85,7 @@ function plugin({types: t}) {
                 let element = getElementClassByName(superClass, elements);
                 node::addSuperClass(element, t);
 
-                if(superClass === 'div'){
+                if(/div/.test(superClass)){
                     return;
                 }
 
@@ -93,6 +93,6 @@ function plugin({types: t}) {
             },
         },
     };
-}
+};
 
 export default plugin;
