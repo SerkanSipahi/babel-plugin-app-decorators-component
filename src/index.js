@@ -91,21 +91,36 @@ let addStaticGetterProperty = function(type, superClass, t) {
 
 /**
  * defaultOptions
- * @type {{customElements: boolean}}
+ * @type {{
+ *     customElements: boolean,
+ *     independent   : boolean
+ * }}
  */
 let defaultOptions = {
 
     /**
-     * possible values: false, v0, v1
+     * possible values: false, "v0", "v1"
      * customElements {boolean|string}
      */
     customElements: false,
+
+    /**
+     * on true : @component (nothing changed)
+     * on false: @component convert to
+     * _component(options){
+     *     ...code...
+     *     depend on customElements = v0, v1
+     *     ...code...
+     * }
+     * dependencies {boolean}
+     */
+    independent: true,
 };
 
 /**
  * plugin
- * @astexplorer: https://astexplorer.net
- * @param t
+ * @astexplorer: https://astexplorer.net (useful for building plugin)
+ * @param t {types}
  * @returns {{visitor: {ClassDeclaration: (function(*=))}}}
  */
 let plugin = ({types: t}) => {
