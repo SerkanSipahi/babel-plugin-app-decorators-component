@@ -90,6 +90,19 @@ let addStaticGetterProperty = function(type, superClass, t) {
 };
 
 /**
+ * defaultOptions
+ * @type {{customElements: boolean}}
+ */
+let defaultOptions = {
+
+    /**
+     * possible values: false, v0, v1
+     * customElements {boolean|string}
+     */
+    customElements: false,
+};
+
+/**
  * plugin
  * @astexplorer: https://astexplorer.net
  * @param t
@@ -106,6 +119,8 @@ let plugin = ({types: t}) => {
              * @param opts {object}
              */
             ClassDeclaration({ node } = path, { opts } = state) {
+
+                let options = Object.assign({}, defaultOptions, opts);
 
                 let component = node::getDecorator('component');
                 if(!component){
