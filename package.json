@@ -1,9 +1,9 @@
 {
   "name": "babel-plugin-app-decorators-component",
   "description": "Babel plugin for app-decorators @component",
-  "version": "0.1.0",
+  "version": "1.0.0-alpha.1",
   "author": "Serkan Sipahi <serkan.sipahi@yahoo.de>",
-  "main": "lib",
+  "main": "lib/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -33,11 +33,5 @@
     "babel-runtime": "6.18.0",
     "babel-traverse": "6.18.0",
     "babylon": "6.13.0"
-  },
-  "scripts": {
-    "build": "babel src -d lib",
-    "watch": "babel src -d lib -w",
-    "prepublish": "npm run build",
-    "test": "babel-node node_modules/.bin/_mocha -- test"
   }
 }
