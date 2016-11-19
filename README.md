@@ -100,7 +100,7 @@ class Helloworld extends HTMLImageElement {
 }
 ```
 
-#### Not possible examples:
+#### Not possible at the moment:
 ```js
 
 class Bar {}
@@ -108,6 +108,10 @@ class Bar {}
 @component()
 class Foo extends Bar {
     
+    static get extends() {
+        return 'img';
+    }
+
 }
 ```
 #### Use dependency-Injection instead:
