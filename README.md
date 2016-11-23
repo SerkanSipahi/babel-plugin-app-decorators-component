@@ -96,7 +96,9 @@ transformed:
    extends: 'img'
 })
 class Helloworld extends HTMLImageElement {
-
+    static get extends() {
+        return 'img';
+    }
 }
 ```
 
@@ -107,10 +109,6 @@ class Bar {}
 
 @component()
 class Foo extends Bar {
-    
-    static get extends() {
-        return 'img';
-    }
 
 }
 ```
