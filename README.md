@@ -1,3 +1,5 @@
+This repository is deprecated. Its moved to: [app-decorators/packages/babel-plugin-app-decorators-component](https://github.com/SerkanSipahi/app-decorators/tree/master/packages/babel-plugin-app-decorators-component)
+---
 ## babel-plugin-app-decorators-component
 Babel Plugin for extend HTMLElement by options for Babeljs v6.x
 
